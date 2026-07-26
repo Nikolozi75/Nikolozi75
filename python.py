@@ -101,5 +101,4 @@ if password:
   st.write(f"Score: {score}")
   for item in feedback:
     st.write(item)
-      
-        
+    
