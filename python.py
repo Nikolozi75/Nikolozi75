@@ -87,4 +87,19 @@ while True:
         break
     else:
         print("არასწორი არჩევანი, სცადეთ თავიდან.")
+import streamlit as st
+
+st.title("Password Strength Checker")
+
+# Create an input box for the user to type their password
+password = st.text_input("Enter your password:", type="password")
+
+if password:
+  # Call your function here
+  score, feedback = check_password_strength(password)
+
+  st.write(f"Score: {score}")
+  for item in feedback:
+    st.write(item)
+      
         
