@@ -1,0 +1,51 @@
+import streamlit as st
+
+# Page Configuration
+st.set_page_config(
+    page_title="SecureGuard Audit Tool", page_icon="🛡️", layout="centered"
+)
+
+st.title("🛡️ Digital Security & Credential Auditor")
+st.write(
+    "Evaluate your organization's password strength and review essential"
+    " cybersecurity checklists."
+)
+
+# Sidebar Navigation
+option = st.sidebar.selectbox(
+    "Select Tool", ["Password Policy Audit", "Security Checklist Generator"]
+)
+
+# Section 1: Password Policy Audit
+if option == "Password Policy Audit":
+  st.header("Corporate Password Strength Checker")
+  user_password = st.text_input(
+      "Enter a sample password to test against guidelines:", type="password"
+  )
+
+  if user_password:
+    score = 0
+    feedback = []
+
+    # Length Check
+    if len(user_password) >= 12:
+      score += 3
+      feedback.append("✔️ Length is secure (12+ characters).")
+    else:
+      feedback.append("❌ Password is too short (aim for 12+ characters).")
+
+    # Display results
+    st.write(f"**Security Score:** {score} / 3")
+    for item in feedback:
+      st.write(item)
+
+# Section 2: Security Checklist Generator
+elif option == "Security Checklist Generator":
+  st.header("Small Business Security Checklist")
+  business_type = st.text_input("Enter your business name:")
+
+  if business_type:
+    st.success(f"Custom Security Plan for: {business_type}")
+    st.checkbox("Enforce Two-Factor Authentication (2FA) on all admin accounts")
+    st.checkbox("Regularly update software and dependencies")
+    st.checkbox("Conduct basic security awareness training for staff")
